@@ -28,7 +28,7 @@ jobs:
                   read -r headerline < $entry
                   filename=${entry#*$prefix_delim}
                   date=${filename%%$filename_delim*}
-                  echo "- [${headerline:2} ($date)]($entry)" >> $index
+                  echo "- [${headerline:2} ($date)](/$entry)" >> $index
                 fi
               done
             fi
