@@ -1,3 +1,3 @@
 # dotclique.github.io
 
-- [Blog](/blog/)
+- [Blog](/index/blog)
