@@ -4,29 +4,31 @@ on: push
 
 jobs:
   indexing:
+    name: Build and Push Index
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build markdown index
+      - name: Build Markdown Index
         run: |
+          rm -rf index
           mkdir -p index
-          
+
           for dir in *; do
-              if [ -d "$dir" ]; then
-                  index="index/$dir.md"
-          
-                  echo "# ${dir^}" > $index
-                  echo "" >> $index
-          
-                  for entry in "$dir"/*.md; do
-                      if [ -f "$entry" ]; then
-                          read -r headerline < $entry
-                          echo "- [${headerline:2}]($entry)" >> $index
-                      fi
-                  done
-              fi
+            if [ -d "$dir" ] && [ "$dir" != "index" ]; then
+              index="index/$dir.md"
+
+              echo "# ${dir^}" > $index
+              echo "" >> $index
+
+              for entry in "$dir"/*.md; do
+                if [ -f "$entry" ]; then
+                  read -r headerline < $entry
+                  echo "- [${headerline:2}]($entry)" >> $index
+                fi
+              done
+            fi
           done
-      - name: Push index
+      - name: Push Markdown Index
         run: |
           git config --global user.name 'dotCliqe CI'
           git config --global user.email 'ci@dotclique.com'
