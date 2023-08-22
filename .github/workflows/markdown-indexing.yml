@@ -13,6 +13,9 @@ jobs:
           rm -rf index
           mkdir -p index
 
+          prefix_delim="/"
+          filename_delim="--"
+
           for dir in *; do
             if [ -d "$dir" ] && [ "$dir" != "index" ]; then
               index="index/$dir.md"
@@ -23,7 +26,9 @@ jobs:
               for entry in "$dir"/*.md; do
                 if [ -f "$entry" ]; then
                   read -r headerline < $entry
-                  echo "- [${headerline:2}]($entry)" >> $index
+                  filename=${entry#*$prefix_delim}
+                  date=${filename%%$filename_delim*}
+                  echo "- [${headerline:2} ($date)]($entry)" >> $index
                 fi
               done
             fi
