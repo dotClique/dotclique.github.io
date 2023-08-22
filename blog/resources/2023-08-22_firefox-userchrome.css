@@ -1,0 +1,298 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/*
+ * This style will hide the tab bar and merge the title bar with the navigation bar. For Windows/Arch
+ * Make sure "Title Bar" is unchecked in customize menu.
+ *
+ * Contributor(s): Ivan0xFF, Dentsor
+ */
+
+ .tabbrowser-tab {
+    visibility: collapse !important;
+  }
+  
+  .titlebar-button {
+    height: 40px !important;
+  }
+  
+  #nav-bar {
+    margin-top: -42px;
+  /*  margin-right: 140px; */
+    margin-right: 10rem;
+    box-shadow: none !important;
+  }
+  
+  [uidensity="compact"]:root .titlebar-button {
+    height: 32px !important;
+  }
+  
+  [uidensity="compact"]:root #nav-bar {
+    margin-top: -32px;
+  }
+  
+  #titlebar-spacer {
+    background-color: var(--chrome-secondary-background-color);
+  }
+  
+  #titlebar-buttonbox-container {
+    background-color: var(--chrome-secondary-background-color);
+  }
+  
+  .titlebar-color {
+    background-color: var(--toolbar-bgcolor);
+  }
+  
+  
+  
+  /* Hide sidebar */
+  
+  #root.root {--frame-el-overlay-hover-bg: #ed0e29ff;}
+  #root.root {--tabs-indent: 15px;}
+  #root.root {--tabs-height: 32px;}
+  #root.root {--ctx-menu-fg: whitesmoke;}
+  #root.root {--tabs-activated-shadow: 0 1px 4px -1px rgba(0,0,0,0.282), inset 0 0 0 1px rgba(255,255,255,0.031);}
+  #root.root {--tabs-lvl-opacity: 0.16;}
+  #root.root {--ctx-menu-shadow: 0 0 0 1px rgba(255,255,255,0.086), 0 1px 16px 0 rgba(0,0,0,0.282);}
+  #root.root {--ctx-menu-separator: black;}
+  #root.root {--ctx-menu-font: 1rem JetBrains Mono;}
+  #root.root {--ctx-menu-border-radius: 5px;}
+  #root.root {--status-notice: #00e9fb;}
+  #root.root {--tabs-font: 1rem JetBrains Mono;}
+  
+  /* ----------- Tab title styles ----------- */
+  
+  /* tabs indent when hovering over sidebar. Useful when using the left sidebar variant */
+  .ScrollBox:not(:hover) {--tabs-indent: 0px;}
+  
+  .Tab .title {
+    transition: all 5s ease;
+    display: inline-block;
+  } 
+  
+  /* enable scrolling */
+  .Tab:hover .title {margin-left: -10rem;}
+  
+  /* moves container indicator to the left */
+  .Tab .ctx { left: 1px; }
+  
+  .Tab[data-discarded="true"] .title { 
+      text-decoration: line-through; 
+      opacity: 75%;
+  }
+  .Tab[data-unread="true"] .title {font-style: italic;}
+  .Tab .fav > .child-count {display: none;} /* hide group counts */
+  
+  .Tab .fav > .fav-icon { /* gives favicon dropshadow */
+      width: var(32px);
+      height: var(32px);
+      filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.4)) !important;
+  }
+  .Tab .audio {
+      top: 3px !important;
+      left: 10px !important;
+      filter: drop-shadow(0px 0px 1px black);
+  }
+  .Tab[data-pin="true"] .audio {
+      top: 12px !important;
+      left: 15px !important;
+      filter: drop-shadow(0px 0px 1px black);
+  }
+  
+  /* ----------- Tab colors ----------- */
+  :root { /* change colors as you like */
+      --red: #8200007f;
+      --orange: #e65e0481;
+      --yellow: #ffd71060;
+      --green: #0082007f;
+      --lightblue: #00c3ff7f;
+      --blue: #3333ff7f;
+      --purple: #cc00ff42;
+      --black: #50505099;
+      --white: #d9edf575;
+  }
+  
+  .Tab[title*="https://github.com"], 
+  .PinnedTab[title*="https://github.com"] {
+      --tabs-activated-bg: var(--white); /* current background */
+      --frame-el-overlay-hover-bg: var(--white); /* hover bg */
+  }
+  
+  /* ----------- Pinned Tab Bar Shadow ----------- */
+  .PinnedTabsBar {
+      box-shadow: inset -2px 0px 30px rgba(0, 0, 0, 0.23);
+  }
+  
+  #root[data-pinned-tabs-position="panel"] .PinnedDock {
+      justify-content: flex-end;
+  }
+  #root[data-pinned-tabs-position="panel"]:not(:hover) .PinnedDock {
+      flex-direction: row-reverse;
+  }
+  
+  
+  /* AUTO-COLLAPSE */
+  
+  /* Sidebery */
+  #main-window[titlepreface*="[S] "] .tabbrowser-tab {
+    visibility: collapse;
+  }
+   
+  #main-window[titlepreface*="[S] "] .titlebar-button {
+    height: 40px;
+  }
+   
+  #main-window[titlepreface*="[S] "] #nav-bar {
+    margin-top: -40px;
+  }
+  #main-window[titlepreface*="[S] "][tabsintitlebar="true"] #nav-bar {
+    margin-right: 137px;
+  }
+  #main-window[titlepreface*="[S] "] #titlebar-spacer {
+    background-color: var(--chrome-secondary-background-color);
+  }
+   
+  #main-window[titlepreface*="[S] "] #titlebar-buttonbox-container {
+    background-color: var(--chrome-secondary-background-color);
+  }
+   
+  #main-window[titlepreface*="[S] "] .titlebar-color {
+    background-color: var(--toolbar-bgcolor);
+  }
+   
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
+    visibility: collapse;
+  }
+   
+  /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/autohide_sidebar.css made available under Mozilla Public License v. 2.0
+  See the above repository for updates as well as full license text. */
+   
+  /* Show sidebar only when the cursor is over it  */
+  /* The border controlling sidebar width will be removed so you'll need to modify these values to change width */
+   
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
+    --uc-sidebar-width: 47px;
+    --uc-sidebar-hover-width: 232px;
+    --uc-autohide-sidebar-delay: 0ms; /* Wait 0.6s before hiding sidebar */
+    position: relative;
+    min-width: var(--uc-sidebar-width) !important;
+    width: var(--uc-sidebar-width) !important;
+    max-width: var(--uc-sidebar-width) !important;
+    z-index:1;
+    margin-top: -1px;
+  }
+   
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"][positionend] {
+    direction: rtl;
+  }
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"][positionend] > *{
+    direction: ltr;
+  }
+   
+  #sidebar-box[positionend]:-moz-locale-dir(rtl){
+    direction: ltr;
+  }
+  #sidebar-box[positionend]:-moz-locale-dir(rtl) > *{
+    direction: rtl;
+  }
+   
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar {
+    transition: min-width 115ms linear !important;
+    min-width: var(--uc-sidebar-width) !important;
+    will-change: min-width;
+  }
+   
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover > #sidebar {
+    min-width: var(--uc-sidebar-hover-width) !important;
+    transition: min-width 100ms linear var(--uc-autohide-sidebar-delay), box-shadow 500ms linear !important;
+    box-shadow: 0 0 4px rgba(10,10,10, .5);
+    clip-path: inset(0px -15px 0px -15px);
+  }
+   
+  /* Add sidebar divider and give it background */
+   
+  #sidebar,
+  #sidebar-header {
+    background-color: var(--toolbar-bgcolor) !important;
+    border-inline: 1px solid var(--chrome-content-separator-color);
+    border-inline-width: 0px 1px;
+  }
+   
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([positionend]) > :-moz-locale-dir(rtl),
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"][positionend] > * {
+    border-inline-width: 1px 0px;
+  }
+   
+  /* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
+   
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([positionend]):hover ~ #appcontent #statuspanel {
+    inset-inline: auto 0px !important;
+  }
+  #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([positionend]):hover ~ #appcontent #statuspanel-label {
+    margin-inline: 0px !important;
+    border-left-style: solid !important;
+  }
+   
+  /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/autohide_bookmarks_toolbar.css made available under Mozilla Public License v. 2.0
+  See the above repository for updates as well as full license text. */
+   
+  #PersonalToolbar{
+    --uc-bm-height: 20px; /* Might need to adjust if the toolbar has other buttons */
+    --uc-bm-padding: 7px; /* Vertical padding to be applied to bookmarks */
+    --uc-autohide-toolbar-delay: 0ms; /* The toolbar is hidden after 0.6s */
+   
+    /* 0deg = "show" ; 90deg = "hide" ;  Set the following to control when bookmarks are shown */
+    --uc-autohide-toolbar-focus-rotation: 0deg; /* urlbar is focused */
+    --uc-autohide-toolbar-hover-rotation: 0deg; /* cursor is over the toolbar area */
+  }
+   
+  :root[uidensity="compact"] #PersonalToolbar{ --uc-bm-padding: 1px; }
+  :root[uidensity="touch"] #PersonalToolbar{ --uc-bm-padding: 7px }
+   
+  #PersonalToolbar:not([customizing]){
+    position: relative;
+    margin-bottom: calc(0px - var(--uc-bm-height) - 2 * var(--uc-bm-padding));
+    transform: rotateX(90deg);
+    transform-origin: top;
+    transition: transform 135ms linear var(--uc-autohide-toolbar-delay) !important;
+    z-index: 1;
+    /* The following properties should allow the themes with trasparent toolbars to work */
+    background-color: transparent !important;
+    background-repeat: no-repeat,no-repeat,var(--lwt-background-tiling);
+    --uc-bg-y: calc(-2 * (var(--tab-block-margin) + var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding)) - var(--tab-min-height) - 16px - var(--bookmark-block-padding));
+    background-position: top left,top left,var(--lwt-background-alignment,top left);
+    background-position-y:top,top,var(--uc-bg-y),var(--uc-bg-y),var(--uc-bg-y);
+    background-image: var(--toolbar-bgimage), linear-gradient(var(--toolbar-bgcolor),var(--toolbar-bgcolor)),var(--lwt-header-image,var(--lwt-additional-images)) !important;
+  }
+   
+  #PlacesToolbarItems > .bookmark-item,
+  #OtherBookmarks,
+  #PersonalToolbar > #import-button{
+    padding-block: var(--uc-bm-padding) !important;
+  }
+   
+  #nav-bar:focus-within + #PersonalToolbar{
+    /*transition-delay: 100ms !important;*/
+    transform: rotateX(var(--uc-autohide-toolbar-focus-rotation,0));
+  }
+   
+  #navigator-toolbox:hover > #PersonalToolbar{
+    transition-delay: 0ms !important;
+    transform: rotateX(var(--uc-autohide-toolbar-hover-rotation,0));
+  }
+   
+  #navigator-toolbox:hover > #nav-bar:focus-within + #PersonalToolbar {  
+    transform: rotateX(0);
+  }
+   
+  /* Uncomment to enable compatibility for multi-row_bookmarks.css */
+  /* This would break buttons placed in the toolbar but that is likely not happening if you are using multi-row setup  */
+  /*
+  #PersonalToolbar:not([customizing]){
+    position: fixed;
+    display: block;
+    margin-bottom: 0px !important;
+  }
+  */
+  

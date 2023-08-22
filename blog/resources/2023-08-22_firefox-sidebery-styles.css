@@ -1,0 +1,316 @@
+#root.root {--frame-el-overlay-selected-bg: #dadadaff;}
+:root {
+    --autohide-sidebar-extended: 230px; /* width of panel extended */
+    --autohide-sidebar-collapsed: 34px; /* width of panel collapsed */
+    --sidebar-height: 100vh;
+}
+
+/* --------Sidebery Auto-hiding Sidebar ----------- */
+/* width of panel (grey box) (different from width of each tab) */
+#main-window:not([extradragspace="true"])
+    #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden]) {
+    width: var(--autohide-sidebar-collapsed) !important;
+    min-width: unset !important;
+    z-index: 1;
+    transition: all 0.2s ease-in-out; /* doesn't do anything unless you uncomment lower bit of code */
+}
+
+/* width of panel (grey box) on hover */
+/* uncomment this section if you want the webpage to move when your tabs are extended- otherwise covers */ 
+/* #main-window:not([extradragspace="true"])
+    #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden]):hover {
+    width: var(--autohide-sidebar-extended) !important;
+    min-width: unset !important;
+    z-index: 1;
+} */
+
+/* width of tabs */
+#main-window:not([extradragspace="true"]) 
+    #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar {
+  width: var(--autohide-sidebar-collapsed) !important;
+  transition: all 0.2s ease-in-out;
+}
+/* width of tabs on hover */
+#main-window:not([extradragspace="true"]) 
+    #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover #sidebar {
+  width: var(--autohide-sidebar-extended)  !important;
+}
+
+/* adjust if your sidebery is not tall enough */
+#main-window:not([extradragspace="true"])[inFullscreen]
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"],
+#main-window:not([extradragspace="true"])
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
+    height: var(--sidebar-height);
+}
+
+#root.root {--frame-el-overlay-hover-bg: #808080ff;}
+#root.root {--tabs-indent: 15px;}
+#root.root {--tabs-height: 32px;}
+#root.root {--ctx-menu-fg: whitesmoke;}
+#root.root {--tabs-activated-shadow: 0 1px 4px -1px rgba(0,0,0,0.282), inset 0 0 0 1px rgba(255,255,255,0.031);}
+#root.root {--tabs-lvl-opacity: 0.16;}
+#root.root {--ctx-menu-shadow: 0 0 0 1px rgba(255,255,255,0.086), 0 1px 16px 0 rgba(0,0,0,0.282);}
+#root.root {--ctx-menu-separator: black;}
+#root.root {--ctx-menu-border-radius: 5px;}
+#root.root {--status-notice: #00e9fb;}
+
+/* ----------- Tab title styles ----------- */
+
+/* tabs indent when hovering over sidebar. Useful when using the left sidebar variant */
+/* Dentsor: changed to 5px for light indent when not hovering */
+.ScrollBox:not(:hover) {--tabs-indent: 5px;}
+
+.Tab .title {
+  transition: all 5s ease;
+  display: inline-block;
+} 
+
+/* enable scrolling */
+.Tab:hover .title {margin-left: -10rem;}
+
+/* moves container indicator to the left */
+.Tab .ctx { left: 1px; }
+
+.Tab[data-discarded="true"] .title { 
+    text-decoration: line-through; 
+    opacity: 75%;
+}
+.Tab[data-unread="true"] .title {font-style: italic;}
+.Tab .fav > .child-count {display: none;} /* hide group counts */
+
+.Tab .fav > .fav-icon { /* gives favicon dropshadow */
+    width: var(32px);
+    height: var(32px);
+    filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.4)) !important;
+}
+.Tab .audio {
+    top: 3px !important;
+    left: 10px !important;
+    filter: drop-shadow(0px 0px 1px black);
+}
+.Tab[data-pin="true"] .audio {
+    top: 12px !important;
+    left: 15px !important;
+    filter: drop-shadow(0px 0px 1px black);
+}
+
+/* ----------- Tab colors ----------- */
+:root { /* change colors as you like */
+    --red: #8200007f;
+    --orange: #e65e0481;
+    --yellow: #ffd71060;
+    --green: #0082007f;
+    --lightblue: #00c3ff7f;
+    --blue: #3333ff7f;
+    --purple: #cc00ff42;
+    --black: #50505099;
+    --white: #d9edf575;
+}
+
+.Tab[title*="https://github.com"], 
+.PinnedTab[title*="https://github.com"] {
+    --tabs-activated-bg: var(--white); /* current background */
+    --frame-el-overlay-hover-bg: var(--white); /* hover bg */
+}
+
+/* ----------- Pinned Tab Bar Shadow ----------- */
+.PinnedTabsBar {
+    box-shadow: inset -2px 0px 30px rgba(0, 0, 0, 0.23);
+}
+
+#root[data-pinned-tabs-position="panel"] .PinnedDock {
+    justify-content: flex-end;
+}
+#root[data-pinned-tabs-position="panel"]:not(:hover) .PinnedDock {
+    flex-direction: row-reverse;
+}
+
+
+
+#root {
+  --tabs-font: 9pt Segoe UI;
+  --tabs-count-font: .625rem Segoe UI;
+  --bookmarks-bookmark-font: .875rem Segoe UI;
+  --bookmarks-folder-font: 9pt Segoe UI;
+  --nav-btn-width: 42px;
+  --nav-btn-height: 42px;
+}
+ 
+/* Adjust styles according to sidebar width */
+@media screen and (max-width: 47px) {
+  #root {
+    --tabs-indent: unset;
+  }
+  .Tab[data-audible]:not([data-muted]) svg.-loud, .Tab[data-muted] svg.-mute {
+    transform: translateY(4px) translateX(-13px);
+  }
+  .NavigationBar .panel-btn:not([data-active="true"]),
+  .Sidebar .settings-btn,
+  .Tab .close,
+  .Tab .title {
+    visibility: collapse;
+  }
+ 
+  .Tab .exp,
+  .Tab[data-parent][data-folded] .fav {
+    pointer-events: none;
+  }
+ 
+}
+ 
+/*
+ * Add margins and rounding around tabs
+ */ 
+ 
+#root {
+  --tabs-height: 42px;
+}
+ 
+/* Background layer */
+.Tab .lvl-wrapper:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 6px);
+  border-radius: 4px;
+  z-index: -1;
+}
+ 
+@media (prefers-color-scheme:light) {
+  #root {
+    --tabs-activated-bg: white !important;
+    --tabs-bg-active: var(--tabs-activated-bg) !important;
+    --tabs-selected-fg: var(--tabs-activated-fg) !important;
+    --tabs-selected-bg: var(--tabs-activated-bg) !important;
+    --bg: #f9f9fb !important;
+    --chrome-content-separator-color: rgb(204,204,204);
+  }
+ 
+  .Tab[data-selected] .lvl-wrapper:after,
+  .Tab[data-active] .lvl-wrapper:after {
+    box-shadow: 0 0 1px rgba(128,128,142,0.9), 0 0 4px rgba(128,128,142,0.5);
+  }
+}
+ 
+@media (prefers-color-scheme:dark) {
+  #root {
+    --tabs-activated-bg: #42414d !important;
+    --tabs-bg-active: var(--tabs-activated-bg) !important;
+    --tabs-selected-fg: var(--tabs-activated-fg) !important;
+    --tabs-selected-bg: var(--tabs-activated-bg) !important;
+    --bg: #2b2a33 !important;
+    --chrome-content-separator-color: #0c0c0d;
+    --tabs-bg-hover: rgb(51, 51, 62) !important;
+  }
+  .Tab[data-selected] .lvl-wrapper:after,
+  .Tab[data-active] .lvl-wrapper:after {
+    box-shadow: 0 0 1px rgba(128,128,142,0.9);
+  }
+  .Tab .placeholder > svg {
+    fill: var(--nav-btn-fg);
+  }
+}
+ 
+/* Reset default styles */
+.Tab:hover,
+.Tab:active,
+.Tab[data-active],
+.Tab[data-active]:active,
+.Tab[data-selected],
+.Tab[data-selected]:hover,
+.Tab[data-selected]:active {
+  background: transparent;
+}
+ 
+/* Reapply styles */
+ 
+.Tab:hover .lvl-wrapper:after {
+  background-color: var(--tabs-bg-hover);
+}
+ 
+.NavigationBar .panel-btn[data-active="true"],
+.Tab:active .lvl-wrapper:after,
+.Tab[data-active]:active .lvl-wrapper:after {
+  background-color: var(--tabs-bg-active);
+}
+ 
+.Tab[data-active] .lvl-wrapper:after {
+  background-color: var(--tabs-activated-bg);
+}
+ 
+ 
+.Tab[data-selected] .lvl-wrapper:after {
+  background-color: var(--tabs-selected-bg);
+}
+ 
+/* Resize and reposition favicons */
+.Tab .fav {
+  margin-left: 15px;
+}
+ 
+.Tab .fav,
+.Tab .placeholder,
+.Tab .t-box {
+  margin-bottom: -3px;
+}
+ 
+.TabsPanel .container {
+  box-shadow: none;
+}
+ 
+.Sidebar::before {
+  --border-margin: 16px;
+  content: '';
+  width: calc(100% - var(--border-margin));
+  margin: 0 calc(var(--border-margin) / 2);
+  border-top: 1px solid var(--chrome-content-separator-color);
+}
+ 
+ 
+.Tab .audio {
+  z-index: 21 !important;
+  transform: translateX(5px);
+}
+.Tab .close {
+  margin: 0 5px;
+}
+.Tab .t-box {
+  width: calc(100% - 50px);
+}
+ 
+.NavigationBar .panels-box {
+/*  flex-wrap: nowrap;*/
+}
+ 
+#root[data-nav-layout="horizontal"] .NavigationBar, #root[data-nav-layout="hidden"] .NavigationBar {
+  box-shadow: none;
+}
+ 
+.NavigationBar .panel-btn {
+  top: 5px;
+  left: 5px;
+  width: calc(var(--nav-btn-width) - 6px);
+  height: calc(var(--nav-btn-height) - 6px);
+  border-radius: 4px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+ 
+.NavigationBar .panel-btn[data-active="true"] {
+  box-shadow: 0 0 1px rgba(128,128,142,0.9);
+}
+/*
+.Sidebar .panel::before{
+  --border-margin: 16px;
+  content: '';
+  width: calc(100% - var(--border-margin));
+  margin: 0 calc(var(--border-margin) / 2);
+  border-top: 1px solid var(--chrome-content-separator-color);
+}
+.NavigationBar .panels-box {
+  flex-wrap: nowrap;
+}
+*/
