@@ -35,8 +35,12 @@ jobs:
           done
       - name: Push Markdown Index
         run: |
-          git config --global user.name 'dotCliqe CI'
-          git config --global user.email 'ci@dotclique.com'
-          git add ./index
-          git commit -m "Update markdown index"
-          git push
+          if [[ `git status --porcelain` ]]; then
+            git config --global user.name 'dotCliqe CI'
+            git config --global user.email 'ci@dotclique.com'
+            git add ./index
+            git commit -m "Update markdown index"
+            git push
+          else
+            echo "Index unchanged"
+          fi
