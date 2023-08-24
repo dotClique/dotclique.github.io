@@ -1,4 +1,4 @@
-# Firefox Styling
+# Firefox Styling with Auto-hiding Vertical Tabs
 
 Firefox can look old-school, but with some extra add-ons and styling it can get a fresh look with auto-hiding vertical-tabs:
 
