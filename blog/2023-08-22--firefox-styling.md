@@ -57,3 +57,11 @@ Right click the toolbar and press *Customize Toolbar...*. At the bottom-left sid
 ### 7. Restart Firefox
 
 Restart Firefox to reload the `userChrome.css`-file.
+
+
+### 8. Fix styling error of pinned tabs
+
+At the time of writing pinned tabs are rendered with weird icon-spacing in Sidebery.
+To counteract this behaviour, you can enable showing titles for pinned tabs, making them render vertically instead of horizontal (personally I find it preferable anyway).
+
+Open Sidebery settings and under `Settings > Tabs > Pinned tabs` enable _Show titles of pinned tabs_.
