@@ -58,6 +58,7 @@ You should see a list showing your internal GPU and your external GPU. Enter the
 > If you cannot see your eGPU yet, do step 6 once before finishing step 5.
 >
 > You can also try `lspci` to list PCI-devices.
+> If it does not show up, see step 7.
 
 Then enable it:
 
@@ -75,8 +76,22 @@ and start it with the eGPU disconnected.
 Reconnect the eGPU when you're in GRUB, before starting the OS.
 
 
+## 7. Fix device authorization
+
+If the eGPU does not show up in `lspci`, go through the devices in `/sys/bus/thunderbolt/devices/` and identify the eGPU (e.g. by checking the `device_name` file`.
+Once identified, open the `authorized` file and change its value from `0` to `1`.
+
+This change will not persist after reboot.
+To fix that, edit `/etc/udev/rules.d/99-removable.rules` to include the following:
+
+```
+ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"
+```
+
+
 # Resources:
 
 This article is based on the following articles/resources:
 - [eGPU Linux Core X Chroma](https://y.tsutsumi.io/2020/08/15/egpu-linux-core-x-chroma/)
 - [egpu-switcher](https://github.com/hertg/egpu-switcher)
+- [eGPU not working after update](https://bbs.archlinux.org/viewtopic.php?id=295377)
