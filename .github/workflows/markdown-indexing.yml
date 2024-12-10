@@ -38,7 +38,7 @@ jobs:
       - name: Push Markdown Index
         run: |
           if [[ `git status --porcelain` ]]; then
-            git config --global user.name 'dotCliqe CI'
+            git config --global user.name 'dotClique CI'
             git config --global user.email 'ci@dotclique.com'
             git add ./index
             git commit -m "Update markdown index"
