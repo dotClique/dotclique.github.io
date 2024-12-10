@@ -1,3 +1,14 @@
+> # 2024 Update:
+>
+> Firefox now have support for vertical tabs built in, and I recommend using it instead of Sidebery:
+>
+> __NB:__ It is worth noting that these will not auto-hide, you have to press the "Expand sidebar"-button at the top left manually.
+>
+> 1. Open `about:config`
+> 2. "Accept the Risk and Continue"
+> 3. Enable `siebar.verticalTabs`
+
+
 # Firefox Styling with Auto-hiding Vertical Tabs
 
 Firefox can look old-school, but with some extra add-ons and styling it can get a fresh look with auto-hiding vertical-tabs:
